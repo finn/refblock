@@ -1,5 +1,5 @@
 <?php
-$baseurl = "http://www.sample.com/refblolck";
+$baseurl = "http://www.sample.com/refblock";
 
 $generatehtml = $_GET['generatehtml'];
 $refererblock = $_GET['refererblock'];
@@ -25,15 +25,15 @@ if($bookmarklet == "true") {
 $answer = urlencode($u);
 $answer = "$baseurl/refer.php?url=$answer&type=$refererblock";
 
-if($generatehtml == "true") {
-    if($bookmarklet == "true") {
-        if($refererblock == "link") {
+if ($generatehtml == "true") {
+    if ($bookmarklet == "true") {
+        if( $refererblock == "link") {
             $answer = "<a href=\"$answer\">";
         } else {
             $answer = "<img src=\"$answer\">";
         }
     } else {
-        if($refererblock == "link") {
+        if ($refererblock == "link") {
             $answer = "&lt;a href=&quot;".$answer."&quot;&gt;";
         } else {
             $answer = "&lt;img src=&quot;".$answer."&quot;&gt;";
@@ -41,7 +41,7 @@ if($generatehtml == "true") {
     }
 }
 
-if($bookmarklet == "true") {
+if ($bookmarklet == "true") {
     header("Content-type: text/plain");
     echo $answer;
     exit;
@@ -49,43 +49,42 @@ if($bookmarklet == "true") {
 
 // if not a bookmarklet:
 
-?>
+?><!DOCTYPE html>
 <html>
 <head>
-<title>Referer Block</title>
-<style>
-body, td {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-}
+  <title>Referer Block</title>
+  <style>
+    body, td {
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 12px;
+    }
 
-body {
-    background: #FFF;
-}
+    body {
+      background: #FFF;
+    }
 
-p.answer {
-    margin-left: 25px;
-    margin-right: 25px;
+    p.answer {
+      margin-left: 25px;
+      margin-right: 25px;
 
-    margin-top: 5px;
-    margin-bottom: 5px;
+      margin-top: 5px;
+      margin-bottom: 5px;
 
-    border-top: 2px solid #999;
-    border-bottom: 2px solid #999;
+      border-top: 2px solid #999;
+      border-bottom: 2px solid #999;
 
-    padding: 8px;
+      padding: 8px;
 
-    font-size: 10px;
-}
-</style>
+      font-size: 10px;
+    }
+  </style>
 </head>
 
 <body>
 
 <h2>Referer Block Generator</h2>
-
 <?
-if($u != "") {
+if ($u != "") {
     echo "<p class=\"answer\"><b>The string you requested is:</b><br />";
     echo $answer."</p>";
 }
@@ -97,25 +96,26 @@ and the full URL you need will be generated.  There is also an option
 to generate the HTML you need to generate a link or image tag.</p>
 
 <form action=cheat.php>
-<input name=u size=50>
-<input type=submit value="Encode!"><br />
-<b>Referer Blocking</b><br />
-<input type=radio name=refererblock value="none" checked> None<br />
-<input type=radio name=refererblock value="image"> Image<br />
-<input type=radio name=refererblock value="link"> Link<br />
-<br />
-<input type=checkbox name=generatehtml value="true"> Generate HTML tag
+  <input name=u size=50>
+  <input type=submit value="Encode!"><br />
+  <b>Referer Blocking</b><br />
+  <input type=radio name=refererblock value="none" checked> None<br />
+  <input type=radio name=refererblock value="image"> Image<br />
+  <input type=radio name=refererblock value="link"> Link<br />
+  <br />
+  <input type=checkbox name=generatehtml value="true"> Generate HTML tag
 </form>
 
-<hr noshade>
+<hr>
 
 <p><b>Bookmarklets!</b></p>
 
-<p>Drag the link you want to your toolbar:<ul>
-<li><a href="javascript:location.href='<?php echo $baseurl; ?>/cheat.php?u='+encodeURIComponent(location.href)+'&bookmarklet=true&generatehtml=true'">Cheat (HTML)</a></li>
-<li><a href="javascript:location.href='<?php echo $baseurl; ?>/cheat.php?u='+encodeURIComponent(location.href)+'&bookmarklet=true'">Cheat (URL only)</a></li>
+<p>Drag the link you want to your toolbar:</p>
+
+<ul>
+  <li><a href="javascript:location.href='<?php echo $baseurl; ?>/cheat.php?u='+encodeURIComponent(location.href)+'&amp;bookmarklet=true&amp;generatehtml=true'">Cheat (HTML)</a></li>
+  <li><a href="javascript:location.href='<?php echo $baseurl; ?>/cheat.php?u='+encodeURIComponent(location.href)+'&amp;bookmarklet=true'">Cheat (URL only)</a></li>
 </ul>
-</p>
 
 </body>
 </html>
