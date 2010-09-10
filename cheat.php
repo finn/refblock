@@ -1,4 +1,4 @@
-<?
+<?php
 $baseurl = "http://www.sample.com/refblolck";
 
 $generatehtml = $_GET['generatehtml'];
