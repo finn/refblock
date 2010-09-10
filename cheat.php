@@ -8,43 +8,43 @@ $bookmarklet = $_GET['bookmarklet'];
 
 // bookmarklet response
 if($bookmarklet == "true") {
-	// match image extensions
-	$imageext = "|.gif|.png|.jpg|jpeg|.bmp|";
-	$ext = substr($u, -4);
+    // match image extensions
+    $imageext = "|.gif|.png|.jpg|jpeg|.bmp|";
+    $ext = substr($u, -4);
 
-	// hacky!
-	if(!stristr($imageext, "|$ext|")) {
-		$refererblock = "link";
-	} else {
-		$refererblock = "image";
-	}
+    // hacky!
+    if(!stristr($imageext, "|$ext|")) {
+        $refererblock = "link";
+    } else {
+        $refererblock = "image";
+    }
 
-	header("Content-type: text/plain");
+    header("Content-type: text/plain");
 }
 
 $answer = urlencode($u);
 $answer = "$baseurl/refer.php?url=$answer&type=$refererblock";
 
 if($generatehtml == "true") {
-	if($bookmarklet == "true") {
-		if($refererblock == "link") {
-			$answer = "<a href=\"$answer\">";
-		} else {
-			$answer = "<img src=\"$answer\">";
-		}
-	} else {
-		if($refererblock == "link") {
-			$answer = "&lt;a href=&quot;".$answer."&quot;&gt;";
-		} else {
-			$answer = "&lt;img src=&quot;".$answer."&quot;&gt;";
-		}
-	}
+    if($bookmarklet == "true") {
+        if($refererblock == "link") {
+            $answer = "<a href=\"$answer\">";
+        } else {
+            $answer = "<img src=\"$answer\">";
+        }
+    } else {
+        if($refererblock == "link") {
+            $answer = "&lt;a href=&quot;".$answer."&quot;&gt;";
+        } else {
+            $answer = "&lt;img src=&quot;".$answer."&quot;&gt;";
+        }
+    }
 }
 
 if($bookmarklet == "true") {
-	header("Content-type: text/plain");
-	echo $answer;
-	exit;
+    header("Content-type: text/plain");
+    echo $answer;
+    exit;
 }
 
 // if not a bookmarklet:
@@ -55,27 +55,27 @@ if($bookmarklet == "true") {
 <title>Referer Block</title>
 <style>
 body, td {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
 }
 
 body {
-	background: #FFF;
+    background: #FFF;
 }
 
 p.answer {
-	margin-left: 25px;
-	margin-right: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
 
-	margin-top: 5px;
-	margin-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 
-	border-top: 2px solid #999;
-	border-bottom: 2px solid #999;
+    border-top: 2px solid #999;
+    border-bottom: 2px solid #999;
 
-	padding: 8px;
+    padding: 8px;
 
-	font-size: 10px;
+    font-size: 10px;
 }
 </style>
 </head>
@@ -86,8 +86,8 @@ p.answer {
 
 <?
 if($u != "") {
-	echo "<p class=\"answer\"><b>The string you requested is:</b><br />";
-	echo $answer."</p>";
+    echo "<p class=\"answer\"><b>The string you requested is:</b><br />";
+    echo $answer."</p>";
 }
 ?>
 
