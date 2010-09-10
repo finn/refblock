@@ -2,8 +2,8 @@
 $url = $_GET['url'];
 $type = $_GET['type'];
 
-if($url != "") {
-    if($type == "image") {
+if ($url != "") {
+    if ($type == "image") {
         $r = curl_init($url);
         curl_setopt($r, CURLOPT_HEADER, 1);
         curl_setopt($r, CURLOPT_NOBODY, 1);
