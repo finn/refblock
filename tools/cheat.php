@@ -83,7 +83,7 @@ if ($bookmarklet == "true") {
 <body>
 
 <h2>Referer Block Generator</h2>
-<?
+<?php
 if ($u != "") {
     echo "<p class=\"answer\"><b>The string you requested is:</b><br />";
     echo $answer."</p>";

@@ -37,9 +37,9 @@ if ($url != "") {
     } else { ?>
 <html>
 <head>
-<meta http-equiv="refresh" content="0;url=<? echo $url; ?>">
+<meta http-equiv="refresh" content="0;url=<?php echo $url; ?>">
 </head>
 </html>
-    <? }
+    <?php }
 }
 ?>
