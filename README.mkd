@@ -1,0 +1,5 @@
+# Referer Block Generator
+
+These are two simple PHP for generating links to pages, images, etc. while blocking the http referer.
+
+This allows linking to a page or file while hiding where the link is coming from.
