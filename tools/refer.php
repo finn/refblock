@@ -54,6 +54,7 @@ if ($url == "") {
         // url argument, but not an image. output a document with a <meta> refresh.
         $meta = <<<META
 <meta http-equiv="refresh" content="0; url=$url">
+
 META;
         echo $header;
         echo $meta;
