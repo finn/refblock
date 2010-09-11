@@ -2,8 +2,27 @@
 $url = $_GET['url'];
 $type = $_GET['type'];
 
-if ($url != "") {
+$header = <<<HEAD
+<!DOCTYPE html>
+<html>
+<head>
+<title>refer</title>
+
+HEAD;
+
+$footer = <<<FOOT
+</head>
+</html>
+
+FOOT;
+
+if ($url == "") {
+    // no url argument. output an empty document.
+    echo $header;
+    echo $footer;
+} else {
     if ($type == "image") {
+        // an image. pull it down from the other server and output it.
         $r = curl_init($url);
         curl_setopt($r, CURLOPT_HEADER, 1);
         curl_setopt($r, CURLOPT_NOBODY, 1);
@@ -19,7 +38,6 @@ if ($url != "") {
         preg_match("/Content-type: (.+)\n/i", $headercontent, $matches);
         $h = $matches[1];
 
-        //$h = "text/plain";
         header("Content-type: $h");
 
         $r = curl_init($url);
@@ -31,15 +49,14 @@ if ($url != "") {
         $imagecontent = curl_exec($r);
         curl_close($r);
 
-        //readfile($url);
-
         print($imagecontent);
-    } else { ?>
-<html>
-<head>
-<meta http-equiv="refresh" content="0;url=<?php echo $url; ?>">
-</head>
-</html>
-    <?php }
+    } else {
+        // url argument, but not an image. output a document with a <meta> refresh.
+        $meta = <<<META
+<meta http-equiv="refresh" content="0; url=$url">
+META;
+        echo $header;
+        echo $meta;
+        echo $footer;
+    }
 }
-?>
